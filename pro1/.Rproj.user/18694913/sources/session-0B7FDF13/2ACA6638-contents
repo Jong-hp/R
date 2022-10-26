@@ -1,0 +1,47 @@
+# 함수
+# 내장함수
+seq(0, 5, by = 1.5)
+
+set.seed(123)
+rnorm(10, mean = 0, sd = 1) # 정규분포를 따르는 난수
+hist(rnorm(5000, mean = 0, sd = 1))
+
+runif(10, min=0, max=100)
+hist(runif(5000, min=0, max=100))
+
+sample(0:10, 5)
+
+vec <- 1:10
+min(vec)
+range(vec)
+mean(vec)
+median(vec)
+var(vec)
+sqrt(var(vec))
+sd(vec)
+sd(vec) / mean(vec)
+quantile(vec)
+sum(vec)
+prod(vec)
+# ...
+
+# 사용자 정의 함수
+func1 <- function(arg){
+  print(arg)
+  return(arg + 10)
+}
+typeof(func1)
+
+func1(5)
+
+gugu_func <- function(dan){
+  for(d in dan){
+    for(i in 1:9){
+      cat(d, '*', i, '=', d * i, ' ')
+    }
+    cat('\n')
+  }
+}
+
+gugu_func(2:5)
+
