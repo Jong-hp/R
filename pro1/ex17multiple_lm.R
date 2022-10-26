@@ -36,4 +36,51 @@ durbinWatsonTest(mfit)
 # D-W Statistic : 2.317  0~4의 범위이며 2근처의 값이 나와야 자기상관관계가 없다. 독립성 만족
 
 # 선형성 검정
-boxTidwell()
+boxTidwell(Murder ~ Population+Illiteracy+Income+Frost, data = states)
+# Population p-value : 0.7468, Illiteracy p-value : 0.5357 > 0.05 이므로 선형성 만족
+
+# 등분산성 검정
+ncvTest(mfit)  # p = 0.18632 > 0.05 등분산성 만족
+
+# 다중공선성
+vif(mfit)  # 각 값들이 10을 넘으면 다중공선성 문제 발생
+
+# AIC 통계량 : 모델의 상대적 품질을 평가하는 척도. 효과적인 독립변수를 선택할 수 있다.
+model1 <- lm(formula = Murder ~ ., data = states)
+summary(model1)
+
+model2 <- lm(formula = Murder ~ Population + Illiteracy, data = states)
+summary(model2)
+
+# AIC 통계량으로 두 모델의 성능 비교
+
+AIC(model1, model2)
+# df      AIC
+# model1  6 241.6429
+# model2  4 237.6565   AIC 값이 더 작으므로 우수한 모델
+
+# stepwise regression : 단계적으로 모형을 검정하면서 AIC 값을 비교한 후 가장 적합한 회귀모형을 찾아준다.
+# backward(후진소거법) : 모든 변수를 독립변수로 주고, 기여도가 낮은 것부터 하나씩 제거
+full_model <- lm(Murder ~ ., data = states)
+reduce_model <- step(full_model, direction = 'backward')
+summary(reduce_model)
+
+# forward(전진선택법) : 가장 유익한 변수부터 하나씩 독립변수로 추가
+min_model <- lm(Murder ~ 1, data = states)
+fwd_model <- step(min_model, direction = 'forward',
+                  scope = (Murder ~ Population + Illiteracy + Income + Frost), trace = 1)
+summary(fwd_model)
+
+# both(단계적 방법) : 
+full_model <- lm(Murder ~ ., data = states)
+step_model <- step(full_model, direction = 'both')
+summary(step_model)
+
+# 회귀모델 체크 사항
+# 모델이 통계적으로 유의한가? F통게량으로 만든 p-value
+# 회귀계수가 유의미한가? p-value, 신뢰구간을 확인
+# 설명력 확인
+# 그래프를 통한 확인
+# 선형회귀분석의 기존 가정 충족 조건을 만족하는가?
+# ...
+
