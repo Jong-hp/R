@@ -29,4 +29,11 @@ plot(mfit)
 # 잔차항의 정규성 검정
 shapiro.test(residuals(mfit))  # p-value : 0.6672 > 0.05 정규성 만족
 
+# 독립성 검정
+install.packages("car")
+library(car)
+durbinWatsonTest(mfit)   
+# D-W Statistic : 2.317  0~4의 범위이며 2근처의 값이 나와야 자기상관관계가 없다. 독립성 만족
 
+# 선형성 검정
+boxTidwell()

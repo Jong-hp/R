@@ -3,7 +3,7 @@
     "path": "C:/work/rsou/pro1/ex17multiple_lm.R",
     "project_path": "ex17multiple_lm.R",
     "type": "r_source",
-    "hash": "0",
+    "hash": "3349853962",
     "contents": "",
     "dirty": false,
     "created": 1666762530353.0,
@@ -13,15 +13,15 @@
         "tempName": "Untitled1",
         "source_window_id": "",
         "Source": "Source",
-        "cursorPosition": "5,14",
-        "scrollLine": "5"
+        "cursorPosition": "38,11",
+        "scrollLine": "13"
     },
     "folds": "",
-    "lastKnownWriteTime": 1666764445,
+    "lastKnownWriteTime": 1666764869,
     "encoding": "UTF-8",
     "collab_server": "",
     "source_window": "",
-    "last_content_update": 1666764445354,
+    "last_content_update": 1666764869911,
     "read_only": false,
     "read_only_alternatives": []
 }
